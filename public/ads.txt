@@ -1,0 +1,2 @@
+# AdSense 소유권 확인: AdSense가 준 한 줄을 아래에 넣으세요 (이 주석 줄은 지워도 됨)
+# 예시: google.com, pub-xxxxxxxxxxxxxxxx, DIRECT, xxxxx
