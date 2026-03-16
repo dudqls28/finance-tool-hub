@@ -42,3 +42,22 @@ export function formatCurrencyKorean(n: number, suffix = ' 원'): string {
 
   return `${round.toLocaleString()}${suffix}`
 }
+
+/**
+ * USD 금액을 K/M 단위로 읽기 쉽게 표시
+ * 예: 1000000 → "$1M", 35000 → "$35K"
+ */
+export function formatCurrencyUSD(n: number): string {
+  if (!Number.isFinite(n) || n < 0) return '$0'
+  const round = Math.round(n)
+  if (round === 0) return '$0'
+  if (round >= 1e6) {
+    const m = round / 1e6
+    return m % 1 === 0 ? `$${m}M` : `$${m.toFixed(1)}M`
+  }
+  if (round >= 1e3) {
+    const k = round / 1e3
+    return k % 1 === 0 ? `$${k}K` : `$${k.toFixed(1)}K`
+  }
+  return `$${round.toLocaleString()}`
+}

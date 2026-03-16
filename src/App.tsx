@@ -5,11 +5,13 @@ import { Scripts } from './components/Scripts'
 import { GoogleAnalytics } from './components/GoogleAnalytics'
 import { ScrollToTop } from './components/ScrollToTop'
 import { CookieConsent } from './components/CookieConsent'
+import { LocaleProvider } from './contexts/LocaleContext'
 import { Privacy } from './pages/Privacy'
 
 function App() {
   return (
     <HelmetProvider>
+      <LocaleProvider>
       <BrowserRouter>
         <ScrollToTop />
         <Scripts />
@@ -22,6 +24,7 @@ function App() {
         </Routes>
         <CookieConsent />
       </BrowserRouter>
+      </LocaleProvider>
     </HelmetProvider>
   )
 }

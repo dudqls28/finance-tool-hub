@@ -1,4 +1,4 @@
-import { formatCurrencyKorean } from '../utils/formatCurrency'
+import { formatCurrencyKorean, formatCurrencyUSD } from '../utils/formatCurrency'
 
 interface InputFieldProps {
   id: string
@@ -26,8 +26,9 @@ export function InputField({
   step = '1',
 }: InputFieldProps) {
   const strVal = String(value)
-  const numVal = unit === '원' ? Number(strVal.replace(/,/g, '')) : NaN
-  const showKoreanRead = unit === '원' && !Number.isNaN(numVal) && numVal >= 10000
+  const isCurrency = unit === '원' || unit === 'USD'
+  const numVal = isCurrency ? Number(strVal.replace(/,/g, '')) : NaN
+  const showRead = isCurrency && !Number.isNaN(numVal) && ((unit === '원' && numVal >= 10000) || (unit === 'USD' && numVal >= 100))
 
   return (
     <div>
@@ -52,9 +53,9 @@ export function InputField({
           </span>
         )}
       </div>
-      {showKoreanRead && (
+      {showRead && (
         <p className="mt-1 text-xs text-slate-500">
-          ≈ {formatCurrencyKorean(numVal)}
+          ≈ {unit === 'USD' ? formatCurrencyUSD(numVal) : formatCurrencyKorean(numVal)}
         </p>
       )}
     </div>

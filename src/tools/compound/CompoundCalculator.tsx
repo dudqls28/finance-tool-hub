@@ -1,9 +1,13 @@
 import { useState, useMemo } from 'react'
 import { InputField } from '../../components/InputField'
 import { ResultCard } from '../../components/ResultCard'
-import { formatCurrencyKorean } from '../../utils/formatCurrency'
+import { formatCurrencyKorean, formatCurrencyUSD } from '../../utils/formatCurrency'
+import { useLocale } from '../../contexts/LocaleContext'
 
 export function CompoundCalculator() {
+  const { locale, currency } = useLocale()
+  const unit = currency === 'usd' ? 'USD' : '원'
+  const format = currency === 'usd' ? formatCurrencyUSD : formatCurrencyKorean
   const [initial, setInitial] = useState('10000000')
   const [monthly, setMonthly] = useState('500000')
   const [rate, setRate] = useState('7')
@@ -25,17 +29,17 @@ export function CompoundCalculator() {
   return (
     <div className="space-y-6">
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-text">입력</h2>
+        <h2 className="text-lg font-semibold text-text">{locale === 'en' ? 'Input' : '입력'}</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <InputField id="initial" label="초기 투자금" value={initial} onChange={setInitial} unit="원" />
-          <InputField id="monthly" label="월 납입액" value={monthly} onChange={setMonthly} unit="원" />
-          <InputField id="rate" label="연 수익률" value={rate} onChange={setRate} unit="%" step="0.1" />
-          <InputField id="years" label="기간" value={years} onChange={setYears} unit="년" />
+          <InputField id="initial" label={locale === 'en' ? 'Initial investment' : '초기 투자금'} value={initial} onChange={setInitial} unit={unit} />
+          <InputField id="monthly" label={locale === 'en' ? 'Monthly contribution' : '월 납입액'} value={monthly} onChange={setMonthly} unit={unit} />
+          <InputField id="rate" label={locale === 'en' ? 'Annual return' : '연 수익률'} value={rate} onChange={setRate} unit="%" step="0.1" />
+          <InputField id="years" label={locale === 'en' ? 'Period' : '기간'} value={years} onChange={setYears} unit={locale === 'en' ? 'yrs' : '년'} />
         </div>
       </div>
       {futureValue !== null && (
         <ResultCard
-          items={[{ label: '미래 가치', value: formatCurrencyKorean(Math.round(futureValue)), highlight: true }]}
+          items={[{ label: locale === 'en' ? 'Future value' : '미래 가치', value: format(Math.round(futureValue)), highlight: true }]}
         />
       )}
     </div>

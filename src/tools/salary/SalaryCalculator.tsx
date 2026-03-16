@@ -1,9 +1,13 @@
 import { useState, useMemo } from 'react'
 import { InputField } from '../../components/InputField'
 import { ResultCard } from '../../components/ResultCard'
-import { formatCurrencyKorean } from '../../utils/formatCurrency'
+import { formatCurrencyKorean, formatCurrencyUSD } from '../../utils/formatCurrency'
+import { useLocale } from '../../contexts/LocaleContext'
 
 export function SalaryCalculator() {
+  const { locale, currency } = useLocale()
+  const unit = currency === 'usd' ? 'USD' : '원'
+  const format = currency === 'usd' ? formatCurrencyUSD : formatCurrencyKorean
   const [gross, setGross] = useState('50000000')
   const [taxRate, setTaxRate] = useState('15')
 
@@ -18,16 +22,16 @@ export function SalaryCalculator() {
   return (
     <div className="space-y-6">
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-text">입력</h2>
+        <h2 className="text-lg font-semibold text-text">{locale === 'en' ? 'Input' : '입력'}</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <InputField id="gross" label="세전 연봉" value={gross} onChange={setGross} unit="원" />
-          <InputField id="tax" label="세율" value={taxRate} onChange={setTaxRate} unit="%" step="0.1" />
+          <InputField id="gross" label={locale === 'en' ? 'Gross annual salary' : '세전 연봉'} value={gross} onChange={setGross} unit={unit} />
+          <InputField id="tax" label={locale === 'en' ? 'Tax rate' : '세율'} value={taxRate} onChange={setTaxRate} unit="%" step="0.1" />
         </div>
       </div>
       <ResultCard
         items={[
-          { label: '세후 연봉', value: formatCurrencyKorean(Math.round(result.netSalary)), highlight: true },
-          { label: '세후 월급', value: formatCurrencyKorean(Math.round(result.monthlySalary)) },
+          { label: locale === 'en' ? 'Net annual salary' : '세후 연봉', value: format(Math.round(result.netSalary)), highlight: true },
+          { label: locale === 'en' ? 'Net monthly salary' : '세후 월급', value: format(Math.round(result.monthlySalary)) },
         ]}
       />
     </div>
