@@ -61,3 +61,46 @@ export function formatCurrencyUSD(n: number): string {
   }
   return `$${round.toLocaleString()}`
 }
+
+/** 입력 필드용: 원화는 정수만 천 단위 콤마 (1,234,567) */
+export function formatInputAsWon(raw: string): string {
+  const digits = raw.replace(/\D/g, '')
+  if (digits === '') return ''
+  const n = parseInt(digits, 10)
+  if (Number.isNaN(n)) return ''
+  return n.toLocaleString('en-US')
+}
+
+/** 입력 필드용: USD는 천 단위 콤마 + 소수 최대 2자리 (1,234,567.89) */
+export function formatInputAsUSD(raw: string): string {
+  const normalized = raw.replace(/,/g, '')
+  if (normalized === '') return ''
+  const match = normalized.match(/^(\d*)(\.?\d{0,2})?/)
+  if (!match) return ''
+  const [, intPart, decPart] = match
+  const hasDot = decPart !== undefined && decPart.startsWith('.')
+  const intNum = intPart === '' ? 0 : parseInt(intPart, 10)
+  if (Number.isNaN(intNum) && intPart !== '') return ''
+  const intStr = intNum.toLocaleString('en-US')
+  if (!hasDot && (decPart === undefined || decPart === '')) return intStr
+  return intStr + (decPart || '.')
+}
+
+/** 포맷된 문자열을 원화용 raw 숫자 문자열로 복원 */
+export function parseInputWon(formatted: string): string {
+  const digits = formatted.replace(/\D/g, '')
+  return digits
+}
+
+/** 포맷된 문자열을 USD용 raw 숫자 문자열로 복원 (소수점 최대 2자리) */
+export function parseInputUSD(formatted: string): string {
+  const cleaned = formatted.replace(/,/g, '')
+  const match = cleaned.match(/^(\d*)(\.?\d*)?/)
+  if (!match) return ''
+  const [, intPart, decPart] = match
+  let out = intPart ?? ''
+  if (decPart !== undefined && decPart.length > 0) {
+    out += decPart.slice(0, 3)
+  }
+  return out
+}

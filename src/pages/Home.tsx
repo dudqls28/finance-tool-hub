@@ -7,8 +7,8 @@ import type { ToolConfig } from '../config/tools'
 import { useLocale } from '../contexts/LocaleContext'
 
 const HOME_TITLE = 'Finance Tool Hub'
-const HOME_DESCRIPTION_KO = 'FIRE, 복리, 배당, DCA, 대출 등 10가지 투자·재테크 계산기. 조기 은퇴 시점, 평균 단가, 월 상환액을 무료로 계산하세요.'
-const HOME_DESCRIPTION_EN = '10 free financial calculators: FIRE, compound interest, dividend, DCA, loan, and more. Plan your retirement and investments.'
+const HOME_DESCRIPTION_KO = 'FIRE, 복리, 배당, DCA, 대출 등 20가지 투자·재테크 계산기. 조기 은퇴 시점, 평균 단가, 월 상환액을 무료로 계산하세요.'
+const HOME_DESCRIPTION_EN = '20 free financial calculators: FIRE, compound interest, dividend, DCA, loan, and more. Plan your retirement and investments.'
 
 const CATEGORY_LABELS_KO: Record<ToolConfig['category'], string> = {
   investment: '투자',
@@ -53,11 +53,11 @@ const HOME_FAQ_EN = [
 
 const homeSectionTitles = {
   hero: { ko: '투자·재테크 계산기', en: 'Investment & finance calculators' },
-  heroSub: { ko: 'FIRE, 복리, 배당, DCA, 대출 등 10가지 금융 계산기로 계획을 세워보세요.', en: 'Plan with 10 free calculators: FIRE, compound interest, dividend, DCA, loans, and more.' },
-  popular: { ko: '인기 계산기', en: 'Popular calculators' },
+  heroSub: { ko: 'FIRE, 복리, 배당, DCA, 대출 등 20가지 금융 계산기로 계획을 세워보세요.', en: 'Plan with 20 free calculators: FIRE, compound interest, dividend, DCA, loans, and more.' },
+  popular: { ko: '추천 계산기', en: 'Featured calculators' },
   categories: { ko: '카테고리별 계산기', en: 'Calculators by category' },
   whyUse: { ko: '왜 이 사이트를 사용할까요?', en: 'Why use this site?' },
-  featured: { ko: '추천 계산기', en: 'Featured calculators' },
+  featured: { ko: '다른 계산기', en: 'More calculators' },
   faq: { ko: '자주 묻는 질문', en: 'FAQ' },
 } as const
 

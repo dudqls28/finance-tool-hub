@@ -34,15 +34,13 @@ export function RoiCalculator() {
           <InputField id="shares" label={locale === 'en' ? 'Quantity' : '수량'} value={shares} onChange={setShares} unit={locale === 'en' ? 'shares' : '주'} />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: locale === 'en' ? 'Profit / Loss' : '손익', value: format(Math.round(result.profit)), highlight: true },
-            { label: locale === 'en' ? 'ROI' : '수익률', value: `${result.roiPct >= 0 ? '' : ''}${result.roiPct.toFixed(2)}%` },
-            { label: locale === 'en' ? 'Invested' : '투자금', value: format(Math.round(result.invested)) },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: locale === 'en' ? 'Profit / Loss' : '손익', value: format(Math.round(result.profit)), highlight: true },
+          { label: locale === 'en' ? 'ROI' : '수익률', value: `${result.roiPct >= 0 ? '' : ''}${result.roiPct.toFixed(2)}%` },
+          { label: locale === 'en' ? 'Invested' : '투자금', value: format(Math.round(result.invested)) },
+        ] : []}
+      />
     </div>
   )
 }

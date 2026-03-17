@@ -61,15 +61,13 @@ export function FireCalculator() {
           <InputField id="expenses" label={labels.expenses[locale]} value={annualExpenses} onChange={setAnnualExpenses} unit={unit} />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: labels.fireAge[locale], value: `${result.fireAge}${locale === 'en' ? ' yrs' : '세'}`, highlight: true },
-            { label: labels.required[locale], value: format(result.requiredNetWorth) },
-            { label: labels.yearsLeft[locale], value: `${result.yearsRemaining}${locale === 'en' ? ' yrs' : '년'}` },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: labels.fireAge[locale], value: `${result.fireAge}${locale === 'en' ? ' yrs' : '세'}`, highlight: true },
+          { label: labels.required[locale], value: format(result.requiredNetWorth) },
+          { label: labels.yearsLeft[locale], value: `${result.yearsRemaining}${locale === 'en' ? ' yrs' : '년'}` },
+        ] : []}
+      />
     </div>
   )
 }

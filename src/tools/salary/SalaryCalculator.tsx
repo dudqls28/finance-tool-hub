@@ -25,7 +25,7 @@ export function SalaryCalculator() {
         <h2 className="text-lg font-semibold text-text">{locale === 'en' ? 'Input' : '입력'}</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <InputField id="gross" label={locale === 'en' ? 'Gross annual salary' : '세전 연봉'} value={gross} onChange={setGross} unit={unit} />
-          <InputField id="tax" label={locale === 'en' ? 'Tax rate' : '세율'} value={taxRate} onChange={setTaxRate} unit="%" step="0.1" />
+          <InputField id="tax" label={locale === 'en' ? 'Assumed deduction rate' : '추정 공제율'} value={taxRate} onChange={setTaxRate} unit="%" step="0.1" />
         </div>
       </div>
       <ResultCard

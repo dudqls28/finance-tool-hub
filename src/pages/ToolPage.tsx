@@ -13,7 +13,7 @@ import { useLocale } from '../contexts/LocaleContext'
 
 const toolPageLabels = {
   home: { ko: '홈', en: 'Home' },
-  tools: { ko: '계산기', en: 'Calculators' },
+  toolsList: { ko: '전체 목록', en: 'All tools' },
   notFound: { ko: '계산기를 찾을 수 없습니다', en: 'Calculator not found' },
   backHome: { ko: '홈으로 돌아가기', en: 'Back to home' },
   howToUse: { ko: '이 계산기는 어떻게 쓰나요?', en: 'How does this calculator work?' },
@@ -68,74 +68,78 @@ export function ToolPage() {
         <nav className="mb-4 text-sm text-slate-600" aria-label="Breadcrumb">
           <Link to="/" className="hover:text-primary">{toolPageLabels.home[locale]}</Link>
           <span className="mx-2">/</span>
-          <Link to="/tools" className="hover:text-primary">{toolPageLabels.tools[locale]}</Link>
+          <Link to="/tools" className="hover:text-primary">{toolPageLabels.toolsList[locale]}</Link>
           <span className="mx-2">/</span>
           <span className="text-text">{name}</span>
         </nav>
         <h1 className="text-2xl font-bold text-text sm:text-3xl">{name}</h1>
         <p className="mt-2 text-slate-600">{description}</p>
 
-        <div className="mt-8">
+        {/* 계산기 영역: 강조 배경 */}
+        <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
           <ToolContent toolId={tool.id} />
         </div>
 
         <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_RESULT} className="mt-6" />
 
-        <section className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
-          <h2 className="text-lg font-semibold text-text">{toolPageLabels.howToUse[locale]}</h2>
-          <ol className="mt-3 list-decimal list-inside space-y-1 text-slate-700">
-            {toolPageLabels.steps[locale].map((step, i) => (
-              <li key={i}>{step}</li>
-            ))}
-          </ol>
-          <p className="mt-4 text-slate-700 leading-relaxed">{explanation}</p>
-        </section>
-
-        <section className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
-          <h2 className="text-lg font-semibold text-text">{toolPageLabels.formula[locale]}</h2>
-          <p className="mt-3 font-mono text-sm text-slate-700 bg-slate-50 p-3 rounded-lg">{formula}</p>
-        </section>
-
-        {example && (
-          <section className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="text-lg font-semibold text-text">{toolPageLabels.example[locale]}</h2>
-            <p className="mt-3 text-slate-700 leading-relaxed">{example}</p>
+        {/* 설명·공식·FAQ: 구분 배경 */}
+        <div className="mt-8 rounded-xl border border-slate-200 bg-slate-50/50 p-6">
+          <section>
+            <h2 className="text-lg font-semibold text-text">{toolPageLabels.howToUse[locale]}</h2>
+            <ol className="mt-3 list-decimal list-inside space-y-1 text-slate-700">
+              {toolPageLabels.steps[locale].map((step, i) => (
+                <li key={i}>{step}</li>
+              ))}
+            </ol>
+            <p className="mt-4 text-slate-700 leading-relaxed">{explanation}</p>
           </section>
-        )}
+
+          <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+            <h2 className="text-lg font-semibold text-text">{toolPageLabels.formula[locale]}</h2>
+            <p className="mt-3 font-mono text-sm text-slate-700 bg-slate-50 p-3 rounded-lg">{formula}</p>
+          </section>
+
+          {example && (
+            <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+              <h2 className="text-lg font-semibold text-text">{toolPageLabels.example[locale]}</h2>
+              <p className="mt-3 text-slate-700 leading-relaxed">{example}</p>
+            </section>
+          )}
+
+          {faqList && faqList.length > 0 && (
+            <>
+              <Helmet>
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                      '@context': 'https://schema.org',
+                      '@type': 'FAQPage',
+                      mainEntity: faqList.map((item) => ({
+                        '@type': 'Question',
+                        name: item.q,
+                        acceptedAnswer: { '@type': 'Answer', text: item.a },
+                      })),
+                    }),
+                  }}
+                />
+              </Helmet>
+              <section className="mt-6 rounded-lg border border-slate-200 bg-white p-4">
+                <h2 className="text-lg font-semibold text-text">{toolPageLabels.faq[locale]}</h2>
+                <ul className="mt-4 space-y-4">
+                  {faqList.map((item, i) => (
+                    <li key={i}>
+                      <h3 className="font-medium text-text">{item.q}</h3>
+                      <p className="mt-1 text-sm text-slate-600">{item.a}</p>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </>
+          )}
+        </div>
 
         <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_MID} className="mt-6" />
-
-        {faqList && faqList.length > 0 && (
-          <>
-            <Helmet>
-              <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                  __html: JSON.stringify({
-                    '@context': 'https://schema.org',
-                    '@type': 'FAQPage',
-                    mainEntity: faqList.map((item) => ({
-                      '@type': 'Question',
-                      name: item.q,
-                      acceptedAnswer: { '@type': 'Answer', text: item.a },
-                    })),
-                  }),
-                }}
-              />
-            </Helmet>
-            <section className="mt-8 rounded-xl border border-slate-200 bg-white p-6">
-              <h2 className="text-lg font-semibold text-text">{toolPageLabels.faq[locale]}</h2>
-              <ul className="mt-4 space-y-4">
-                {faqList.map((item, i) => (
-                  <li key={i}>
-                    <h3 className="font-medium text-text">{item.q}</h3>
-                    <p className="mt-1 text-sm text-slate-600">{item.a}</p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </>
-        )}
 
         <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_RELATED} className="mt-6" />
 

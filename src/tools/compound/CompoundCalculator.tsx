@@ -37,11 +37,9 @@ export function CompoundCalculator() {
           <InputField id="years" label={locale === 'en' ? 'Period' : '기간'} value={years} onChange={setYears} unit={locale === 'en' ? 'yrs' : '년'} />
         </div>
       </div>
-      {futureValue !== null && (
-        <ResultCard
-          items={[{ label: locale === 'en' ? 'Future value' : '미래 가치', value: format(Math.round(futureValue)), highlight: true }]}
-        />
-      )}
+      <ResultCard
+        items={futureValue !== null ? [{ label: locale === 'en' ? 'Future value' : '미래 가치', value: format(Math.round(futureValue)), highlight: true }] : []}
+      />
     </div>
   )
 }

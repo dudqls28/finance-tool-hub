@@ -43,14 +43,12 @@ export function WeeklyRestCalculator() {
           />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: locale === 'en' ? 'Weekly rest pay (1 day)' : '주휴수당 (1일분)', value: format(Math.round(result.restPay)), highlight: true },
-            { label: locale === 'en' ? 'Daily wage (avg)' : '일급 (평균)', value: format(Math.round(result.dailyAvg)) },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: locale === 'en' ? 'Weekly rest pay (1 day)' : '주휴수당 (1일분)', value: format(Math.round(result.restPay)), highlight: true },
+          { label: locale === 'en' ? 'Daily wage (avg)' : '일급 (평균)', value: format(Math.round(result.dailyAvg)) },
+        ] : []}
+      />
     </div>
   )
 }

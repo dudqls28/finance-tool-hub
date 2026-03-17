@@ -1,4 +1,7 @@
 import React, { lazy, Suspense } from 'react'
+import { CalculatorErrorBoundary } from '../components/CalculatorErrorBoundary'
+import { CalculatorSkeleton } from '../components/CalculatorSkeleton'
+import { useLocale } from '../contexts/LocaleContext'
 
 const FireCalculator = lazy(() => import('./fire/FireCalculator').then((m) => ({ default: m.FireCalculator })))
 const AveragingCalculator = lazy(() => import('./averaging/AveragingCalculator').then((m) => ({ default: m.AveragingCalculator })))
@@ -49,11 +52,14 @@ interface ToolContentProps {
 }
 
 export function ToolContent({ toolId }: ToolContentProps) {
+  const { locale } = useLocale()
   const Component = components[toolId]
   if (!Component) return <p className="text-slate-500">준비 중입니다.</p>
   return (
-    <Suspense fallback={<p className="text-slate-500">로딩 중...</p>}>
-      <Component />
-    </Suspense>
+    <CalculatorErrorBoundary fallbackLocale={locale}>
+      <Suspense fallback={<CalculatorSkeleton />}>
+        <Component />
+      </Suspense>
+    </CalculatorErrorBoundary>
   )
 }

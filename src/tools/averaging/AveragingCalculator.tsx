@@ -42,19 +42,15 @@ export function AveragingCalculator() {
           <InputField id="add" label={locale === 'en' ? 'Additional shares' : '추가 매수 수량'} value={addShares} onChange={setAddShares} unit={locale === 'en' ? 'shares' : '주'} placeholder={locale === 'en' ? 'e.g. 50' : '예: 50'} min={0} />
         </div>
       </div>
-      {result !== null && (
-        <>
-          <ResultCard
-            items={[{ label: locale === 'en' ? 'New average price' : '새 평균 단가', value: format(Math.round(result.newAvg)), highlight: true }]}
-          />
-          {result.currentSharesZero && (
-            <p className="text-sm text-amber-700 dark:text-amber-400">
-              {locale === 'en'
-                ? 'Current shares is 0, so the new average equals the additional buy price. If you already hold shares, enter the current share count above.'
-                : '현재 보유 수량이 0이면 새 평균은 추가 매수 단가와 같습니다. 이미 보유 중인 주식이 있다면 위 "현재 보유 수량"을 입력해 주세요.'}
-            </p>
-          )}
-        </>
+      <ResultCard
+        items={result !== null ? [{ label: locale === 'en' ? 'New average price' : '새 평균 단가', value: format(Math.round(result.newAvg)), highlight: true }] : []}
+      />
+      {result?.currentSharesZero && (
+        <p className="mt-2 text-sm text-amber-700 dark:text-amber-400">
+          {locale === 'en'
+            ? 'Current shares is 0, so the new average equals the additional buy price. If you already hold shares, enter the current share count above.'
+            : '현재 보유 수량이 0이면 새 평균은 추가 매수 단가와 같습니다. 이미 보유 중인 주식이 있다면 위 "현재 보유 수량"을 입력해 주세요.'}
+        </p>
       )}
     </div>
   )

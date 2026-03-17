@@ -54,16 +54,14 @@ export function FixedDepositCalculator() {
           </div>
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: locale === 'en' ? 'Interest (before tax)' : '이자 (세전)', value: format(Math.round(result.interest)), highlight: true },
-            { label: locale === 'en' ? 'Tax (15.4%)' : '이자소득세 (15.4%)', value: format(Math.round(result.tax)) },
-            { label: locale === 'en' ? 'After tax' : '세후 이자', value: format(Math.round(result.afterTax)) },
-            { label: locale === 'en' ? 'Maturity (principal + after tax)' : '만기 수령액', value: format(Math.round(result.maturity)) },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: locale === 'en' ? 'Interest (before tax)' : '이자 (세전)', value: format(Math.round(result.interest)), highlight: true },
+          { label: locale === 'en' ? 'Tax (15.4%)' : '이자소득세 (15.4%)', value: format(Math.round(result.tax)) },
+          { label: locale === 'en' ? 'After tax' : '세후 이자', value: format(Math.round(result.afterTax)) },
+          { label: locale === 'en' ? 'Maturity (principal + after tax)' : '만기 수령액', value: format(Math.round(result.maturity)) },
+        ] : []}
+      />
     </div>
   )
 }

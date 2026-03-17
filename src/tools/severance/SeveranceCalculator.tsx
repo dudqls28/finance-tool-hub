@@ -42,14 +42,12 @@ export function SeveranceCalculator() {
           />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: locale === 'en' ? 'Severance pay' : '퇴직금', value: format(Math.round(result.severance)), highlight: true },
-            { label: locale === 'en' ? 'Years employed' : '재직 연수', value: `${result.years}${locale === 'en' ? ' yrs' : '년'}` },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: locale === 'en' ? 'Severance pay' : '퇴직금', value: format(Math.round(result.severance)), highlight: true },
+          { label: locale === 'en' ? 'Years employed' : '재직 연수', value: `${result.years}${locale === 'en' ? ' yrs' : '년'}` },
+        ] : []}
+      />
     </div>
   )
 }

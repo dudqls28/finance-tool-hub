@@ -35,11 +35,9 @@ export function MortgageCalculator() {
           <InputField id="term" label={locale === 'en' ? 'Loan term' : '대출 기간'} value={term} onChange={setTerm} unit={locale === 'en' ? 'yrs' : '년'} />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[{ label: locale === 'en' ? 'Monthly payment' : '월 상환액', value: format(Math.round(result.monthlyPayment)), highlight: true }]}
-        />
-      )}
+      <ResultCard
+        items={result ? [{ label: locale === 'en' ? 'Monthly payment' : '월 상환액', value: format(Math.round(result.monthlyPayment)), highlight: true }] : []}
+      />
     </div>
   )
 }

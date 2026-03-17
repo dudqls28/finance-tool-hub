@@ -35,20 +35,20 @@ export function Footer() {
           <Link to="/" className="font-semibold text-primary">
             Finance Tool Hub
           </Link>
-          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600">
-            <Link to="/" className="hover:text-primary">{footerLabels.home[locale]}</Link>
-            <Link to="/tools" className="hover:text-primary">{footerLabels.tools[locale]}</Link>
-            <Link to="/privacy" className="hover:text-primary">{footerLabels.privacy[locale]}</Link>
-            <span className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-600">
+            <Link to="/" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.home[locale]}</Link>
+            <Link to="/tools" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.tools[locale]}</Link>
+            <Link to="/privacy" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.privacy[locale]}</Link>
+            <span className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
                 onClick={copyFeedbackEmail}
-                className="hover:text-primary text-left"
+                className="min-h-[44px] min-w-[44px] py-2 pr-2 text-left hover:text-primary"
               >
                 {footerLabels.feedback[locale]}
               </button>
               {copied && (
-                <span className="text-primary text-xs whitespace-nowrap">
+                <span className="text-primary text-xs">
                   {footerLabels.copied[locale]}
                 </span>
               )}

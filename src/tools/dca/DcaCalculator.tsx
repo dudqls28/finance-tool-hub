@@ -36,14 +36,12 @@ export function DcaCalculator() {
           <InputField id="rate" label={locale === 'en' ? 'Expected annual return' : '예상 연 수익률'} value={rate} onChange={setRate} unit="%" step="0.1" />
         </div>
       </div>
-      {result && (
-        <ResultCard
-          items={[
-            { label: locale === 'en' ? 'Total invested' : '총 투자금', value: format(Math.round(result.totalInvested)) },
-            { label: locale === 'en' ? 'Expected portfolio value' : '예상 포트폴리오 가치', value: format(Math.round(result.portfolioValue)), highlight: true },
-          ]}
-        />
-      )}
+      <ResultCard
+        items={result ? [
+          { label: locale === 'en' ? 'Total invested' : '총 투자금', value: format(Math.round(result.totalInvested)) },
+          { label: locale === 'en' ? 'Expected portfolio value' : '예상 포트폴리오 가치', value: format(Math.round(result.portfolioValue)), highlight: true },
+        ] : []}
+      />
     </div>
   )
 }
