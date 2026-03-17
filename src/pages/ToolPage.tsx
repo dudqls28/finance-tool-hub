@@ -17,6 +17,7 @@ const toolPageLabels = {
   backHome: { ko: '홈으로 돌아가기', en: 'Back to home' },
   howToUse: { ko: '이 계산기는 어떻게 쓰나요?', en: 'How does this calculator work?' },
   formula: { ko: '계산 공식', en: 'Formula' },
+  example: { ko: '예시 계산', en: 'Example calculation' },
   faq: { ko: '자주 묻는 질문', en: 'FAQ' },
 } as const
 
@@ -30,6 +31,7 @@ export function ToolPage() {
   const description = isEn ? tool?.descriptionEn : tool?.description
   const explanation = isEn ? tool?.explanationEn : tool?.explanation
   const formula = isEn ? tool?.formulaEn : tool?.formula
+  const example = isEn ? tool?.exampleEn : tool?.example
   const faqList = isEn ? tool?.faqEn : tool?.faq
 
   useEffect(() => {
@@ -81,6 +83,13 @@ export function ToolPage() {
           <h2 className="text-lg font-semibold text-text">{toolPageLabels.formula[locale]}</h2>
           <p className="mt-3 font-mono text-sm text-slate-700 bg-slate-50 p-3 rounded-lg">{formula}</p>
         </section>
+
+        {example && (
+          <section className="mt-6 rounded-xl border border-slate-200 bg-white p-6">
+            <h2 className="text-lg font-semibold text-text">{toolPageLabels.example[locale]}</h2>
+            <p className="mt-3 text-slate-700 leading-relaxed">{example}</p>
+          </section>
+        )}
 
         <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_MID} className="mt-6" />
 

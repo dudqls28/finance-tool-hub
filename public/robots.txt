@@ -1,0 +1,5 @@
+# https://finance-tool-hub.com
+User-agent: *
+Allow: /
+
+Sitemap: https://finance-tool-hub.com/sitemap.xml
