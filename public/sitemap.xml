@@ -61,6 +61,56 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://finance-tool-hub.com/tools/severance-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/weekly-rest-pay-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/annual-leave-pay-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/principal-equal-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/jeonse-loan-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/roi-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/fixed-deposit-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/emergency-fund-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/real-return-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://finance-tool-hub.com/tools/credit-card-interest-calculator</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://finance-tool-hub.com/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

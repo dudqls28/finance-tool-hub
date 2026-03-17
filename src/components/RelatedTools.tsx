@@ -15,7 +15,7 @@ export function RelatedTools({ relatedToolIds, currentToolId }: RelatedToolsProp
   const tools = relatedToolIds
     .map((id) => toolsConfig.find((t) => t.id === id))
     .filter((t): t is ToolConfig => t != null && t.id !== currentToolId)
-    .slice(0, 4)
+    .slice(0, 6)
 
   if (tools.length === 0) return null
 
