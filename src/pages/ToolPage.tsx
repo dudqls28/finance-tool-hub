@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer'
 import { Seo } from '../components/Seo'
 import { AdSlot } from '../components/AdSlot'
 import { RelatedTools } from '../components/RelatedTools'
+import { CategoryIcon } from '../components/CategoryIcon'
 import { toolsConfig } from '../config/tools'
 import { ToolContent } from '../tools/ToolContent'
 import { trackCalculatorView } from '../utils/analytics'
@@ -72,8 +73,13 @@ export function ToolPage() {
           <span className="mx-2">/</span>
           <span className="text-text">{name}</span>
         </nav>
-        <h1 className="text-2xl font-bold text-text sm:text-3xl">{name}</h1>
-        <p className="mt-2 text-slate-600">{description}</p>
+        <div className="flex items-center gap-3">
+          <CategoryIcon category={tool.category} variant="inline" size={28} className="shrink-0 text-primary" />
+          <div>
+            <h1 className="text-2xl font-bold text-text sm:text-3xl">{name}</h1>
+            <p className="mt-1 text-slate-600">{description}</p>
+          </div>
+        </div>
 
         {/* 계산기 영역: 강조 배경 */}
         <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -138,8 +144,6 @@ export function ToolPage() {
             </>
           )}
         </div>
-
-        <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_MID} className="mt-6" />
 
         <AdSlot slotId={import.meta.env.VITE_ADSENSE_SLOT_RELATED} className="mt-6" />
 

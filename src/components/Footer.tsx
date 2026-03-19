@@ -8,6 +8,7 @@ const footerLabels = {
   home: { ko: '홈', en: 'Home' },
   tools: { ko: '계산기', en: 'Calculators' },
   privacy: { ko: '개인정보처리방침', en: 'Privacy' },
+  terms: { ko: '이용약관', en: 'Terms' },
   feedback: { ko: '의견 보내기', en: 'Send feedback' },
   copied: { ko: '복사됨! Gmail 등에서 붙여넣어 보내주세요.', en: 'Copied! Paste in Gmail or your email app to send.' },
   copyright: { ko: '투자·재테크 계산기 서비스.', en: 'Investment & finance calculators.' },
@@ -39,6 +40,7 @@ export function Footer() {
             <Link to="/" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.home[locale]}</Link>
             <Link to="/tools" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.tools[locale]}</Link>
             <Link to="/privacy" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.privacy[locale]}</Link>
+            <Link to="/terms" className="min-h-[44px] flex items-center hover:text-primary">{footerLabels.terms[locale]}</Link>
             <span className="flex flex-wrap items-center gap-2">
               <button
                 type="button"

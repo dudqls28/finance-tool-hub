@@ -7,6 +7,7 @@ import { ScrollToTop } from './components/ScrollToTop'
 import { CookieConsent } from './components/CookieConsent'
 import { LocaleProvider } from './contexts/LocaleContext'
 import { Privacy } from './pages/Privacy'
+import { Terms } from './pages/Terms'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route key={path} path={path} element={<Component />} />
           ))}
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
         <CookieConsent />
       </BrowserRouter>

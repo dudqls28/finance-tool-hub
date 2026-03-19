@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import type { ToolConfig } from '../config/tools'
 import { trackCalculatorClick } from '../utils/analytics'
 import { useLocale } from '../contexts/LocaleContext'
+import { CategoryIcon } from './CategoryIcon'
 
 interface CalculatorCardProps {
   tool: ToolConfig
@@ -32,10 +33,13 @@ export function CalculatorCard({ tool }: CalculatorCardProps) {
       onClick={() => trackCalculatorClick(tool.id, tool.name, fromPage)}
       className="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-primary/30 hover:shadow-md"
     >
-      <span className="inline-block rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">
-        {categoryLabel}
-      </span>
-      <h3 className="mt-2 font-semibold text-text">{name}</h3>
+      <div className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-2.5 py-1.5">
+        <CategoryIcon category={tool.category} variant="card" />
+        <span className="text-xs font-medium leading-none text-primary">
+          {categoryLabel}
+        </span>
+      </div>
+      <h3 className="mt-3 font-semibold text-text">{name}</h3>
       <p className="mt-1 text-sm text-slate-600">{description}</p>
       <span className="mt-2 inline-block text-sm font-medium text-primary">
         {calcCta[locale]}
